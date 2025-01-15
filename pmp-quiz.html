@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMP Quiz</title>
+    <link rel="stylesheet" href="pmpstyles.css">
+    <script src="pmp-quiz.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>PMP Quiz</h1>
+    </header>
+
+    <main>
+        <form id="quiz-form">
+            <div class="question" id="question-1">
+                <p>1. What is the primary goal of project management?</p>
+                <label><input type="radio" name="q1" value="a"> To complete the project on time</label><br>
+                <label><input type="radio" name="q1" value="b"> To achieve project objectives</label><br>
+                <label><input type="radio" name="q1" value="c"> To reduce project costs</label><br>
+            </div>
+            <div class="navigation-buttons">
+                <button type="button" id="previous-button" disabled>Previous</button>
+                <button type="button" id="next-button">Next</button>
+            </div>
+
+            <button type="button" id="submit-button" style="display: none;">Submit</button>
+       
+
+ <div class="question" id="question-2">
+                <p>1. What is the primary goal of project management?</p>
+                <label><input type="radio" name="q2" value="a"> To complete the project on time</label><br>
+                <label><input type="radio" name="q2" value="b"> To achieve project objectives</label><br>
+                <label><input type="radio" name="q2" value="c"> To reduce project costs</label><br>
+            </div>
+            <div class="navigation-buttons">
+                <button type="button" id="previous-button" disabled>Previous</button>
+                <button type="button" id="next-button">Next</button>
+            </div>
+
+            <button type="button" id="submit-button" style="display: none;">Submit</button>
+      
+
+ <div class="question" id="question-3">
+                <p>1. What is the pimary goal of project management?</p>
+                <label><input type="radio" name="q3" value="a"> To complete the project on time</label><br>
+                <label><input type="radio" name="q3" value="b"> To achieve project objectives</label><br>
+                <label><input type="radio" name="q3" value="c"> To reduce project costs</label><br>
+            </div>
+           
+
+            <!-- Repeat similar blocks for questions 2-10 -->
+
+            <div class="navigation-buttons">
+                <button type="button" id="previous-button" disabled>Previous</button>
+                <button type="button" id="next-button">Next</button>
+            </div>
+
+            <button type="button" id="submit-button" style="display: none;">Submit</button>
+        </form>
+
+        <div id="result" style="display: none;">
+            <h2>Your Score: <span id="score"></span>/10</h2>
+            <div id="explanations"></div>
+        </div>
+    </main>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the primary goal of project management?",
+                correctAnswer: "b",
+                explanation: "The primary goal of project management is to achieve the project's objectives within the constraints of time, cost, and scope."
+question: "What is the primary goal of project management?",
+                correctAnswer: "b",
+                explanation: "The primary goal of project management is to achieve the project's objectives within the constraints of time, cost, and scope."
+question: "What is the primary goal of project management?",
+                correctAnswer: "b",
+                explanation: "The primary goal of project management is to achieve the project's objectives within the constraints of time, cost, and scope."
+            },
+            // Add the remaining 9 questions here
+        ];
+
+        let currentQuestionIndex = 0;
+
+        document.getElementById('next-button').addEventListener('click', () => {
+            const currentQuestion = document.getElementById(`question-${currentQuestionIndex + 1}`);
+            const nextQuestion = document.getElementById(`question-${currentQuestionIndex + 2}`);
+
+            if (nextQuestion) {
+                currentQuestion.style.display = 'none';
+                nextQuestion.style.display = 'block';
+                currentQuestionIndex++;
+            }
+
+            updateNavigationButtons();
+        });
+
+        document.getElementById('previous-button').addEventListener('click', () => {
+            const currentQuestion = document.getElementById(`question-${currentQuestionIndex + 1}`);
+            const previousQuestion = document.getElementById(`question-${currentQuestionIndex}`);
+
+            if (previousQuestion) {
+                currentQuestion.style.display = 'none';
+                previousQuestion.style.display = 'block';
+                currentQuestionIndex--;
+            }
+
+            updateNavigationButtons();
+        });
+
+        function updateNavigationButtons() {
+            const previousButton = document.getElementById('previous-button');
+            const nextButton = document.getElementById('next-button');
+            const submitButton = document.getElementById('submit-button');
+
+            previousButton.disabled = currentQuestionIndex === 0;
+            nextButton.style.display = currentQuestionIndex === questions.length - 1 ? 'none' : 'inline-block';
+            submitButton.style.display = currentQuestionIndex === questions.length - 1 ? 'inline-block' : 'none';
+        }
+
+        function confetti() {
+            // Add simple confetti logic (e.g., use confetti.js or similar library)
+            alert('Congratulations! Perfect score! 🎉');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            questions.forEach((_, index) => {
+                const questionElement = document.getElementById(`question-${index + 1}`);
+                if (index !== 0) {
+                    questionElement.style.display = 'none';
+                }
+            });
+
+            updateNavigationButtons();
+        });
+    </script>
+</body>
+</html>
